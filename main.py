@@ -32,7 +32,7 @@ def main():
     Точка входа
     """
     driver = webdriver.Firefox()
-    driver.get("http://localhost:63343/page/index.html?_ijt=qv7qe56021c58sku5nb7mdfdrk&_ij_reload=RELOAD_ON_SAVE")
+    driver.get("http://localhost:63343/page/index.html?_ijt=8kgsnu8kapjuf6siqqoo1jgr1d")
 
     shutil.rmtree("./images")
     os.mkdir("./images")
@@ -72,7 +72,7 @@ def main():
         stylesheet_colors[stylesheet.id] = colors
         stylesheet_id_to_path[stylesheet.id] = stylesheet.get_attribute("href")
         driver.execute_script("arguments[0].disabled = true", stylesheet)
-
+    driver.quit()
     # Сравниваем
     positive_stylesheets = []
     negative_stylesheets = []
@@ -99,7 +99,7 @@ def main():
             if compare_images(f"./images/{stylesheet_name}/{header_name}.png", f"./images/without-styles/{header_name}.png"):
                 message += '<tagname style="color:green">совпадают</tagname>'
             else:
-                message += '<tagname style="color:green">совпадают</tagname>'
+                message += '<tagname style="color:red">несовпадают</tagname>'
             message += f'</p><div style="border: 1px solid #ccc"><img src="./images/{stylesheet_name}/{header_name}.png"><br><img src="./images/without-styles/{header_name}.png"></div>'
             message += '\n'
         message += "</div>"
@@ -116,7 +116,6 @@ def main():
         for i in negative_stylesheets:
             negative_buttons += f'<button class="groupLinks" onclick="openEntry(event, \'{i}\')">{stylesheet_id_to_path[i]}</button>\n'
         f.write(html.html_template.format(positive_buttons, negative_buttons, message))
-    driver.quit()
 
 
 if __name__ == '__main__':
