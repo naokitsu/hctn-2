@@ -43,32 +43,32 @@ html_template = """
 </div>
 {}
 <script>
-    function openGroup(evt, groupName) {
+    function openGroup(evt, groupName) {{
         var i, content, buttons;
         content = document.getElementsByClassName("group");
-        for (i = 0; i < content.length; i++) {
+        for (i = 0; i < content.length; i++) {{
             content[i].style.display = "none";
-        }
+        }}
         buttons = document.getElementsByClassName("groupLinks");
-        for (i = 0; i < buttons.length; i++) {
+        for (i = 0; i < buttons.length; i++) {{
             buttons[i].className = buttons[i].className.replace(" active", "");
-        }
+        }}
         document.getElementById(groupName).style.display = "block";
         evt.currentTarget.className += " active";
-    }
-    function openEntry(evt, entryName) {
+    }}
+    function openEntry(evt, entryName) {{
         var i, content, buttons;
         content = document.getElementsByClassName("entry");
-        for (i = 0; i < content.length; i++) {
+        for (i = 0; i < content.length; i++) {{
             content[i].style.display = "none";
-        }
+        }}
         buttons = document.getElementsByClassName("entryLinks");
-        for (i = 0; i < buttons.length; i++) {
+        for (i = 0; i < buttons.length; i++) {{
             buttons[i].className = buttons[i].className.replace(" active", "");
-        }
+        }}
         document.getElementById(entryName).style.display = "block";
         evt.currentTarget.className += " active";
-    }
+    }}
 </script>
 <script>
     document.getElementById("defaultOpen").click();
