@@ -6,6 +6,7 @@ from PIL import Image
 from PIL import ImageChops
 import shutil
 import html
+import sys
 
 def check_we(we: WebElement):
     """
@@ -32,7 +33,10 @@ def main():
     Точка входа
     """
     driver = webdriver.Firefox()
-    driver.get("http://localhost:63343/page/index.html?_ijt=8kgsnu8kapjuf6siqqoo1jgr1d")
+    if len(sys.argv) != 2:
+        print("Передайте страницу первым аргуметом")
+        return
+    driver.get(sys.argv[1])
 
     shutil.rmtree("./images")
     os.mkdir("./images")
